@@ -1,0 +1,13 @@
+To speed up GET requests from S3 use Elasticache Redis (not Dynamo DAX, which only works with Dynamo)
+NAT Gateways are placed within public subnets (not attached to VPCs) - they allow instances in private subnets to access the internet
+VPC Flow logs used for grabbing the IP addresses and other info from requests going through an ELB, specify the network interfaces (not the subnet, which would be less secure)
+There's one Network Interface for each ELB subnet
+VPG - AWS side of the VPN
+Customer Gateway - Customer Side of the VPN
+default NACL Rules - allow all inbound/outbound
+custom NACL Rules (default) - deny all inbound/outbound
+Transit Gateway works withIN a region, not globally
+VPG works btwn regions to connect VPCs + direct ocnnect networks
+User Pools - sign in through 3rd party IdP
+Identity Pools - grant temporary access to AWS services (S3, Dynamo)
+Alias cannot point to a WAF, use OAI + enable WAF on Cloudfront w/S3
