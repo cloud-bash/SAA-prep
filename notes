@@ -8,6 +8,106 @@ default NACL Rules - allow all inbound/outbound
 custom NACL Rules (default) - deny all inbound/outbound
 Transit Gateway works withIN a region, not globally
 VPG works btwn regions to connect VPCs + direct ocnnect networks
-User Pools - sign in through 3rd party IdP
+User Pools - sign in through 3rd party IdP, user directories for Cognito, allows users to sign into web or mobile apps
 Identity Pools - grant temporary access to AWS services (S3, Dynamo)
 Alias cannot point to a WAF, use OAI + enable WAF on Cloudfront w/S3
+Lustre doesn't support Fargate, but EFS does
+General Purpose SSD - infrequent usage, I/O variable, 3,000 IOPS peak
+Throughput Optimized HDD has no SLA for IOPS, Map Reduce, high thruput, large I/O, 500GB, frequenty accessed, large datasets, 40mb/s/TB, burst 250 mb/s, max thruput 500mb/s/vol
+TemplateURL control which templates IAM users can use when they create or update stacks
+Elaticache Redis - persistent data store, optimized retrieval times
+Relational DBs are not used for session state data bc of strict format
+Stick Sessions on a ELB - return info on user session (also for keeping a session on a specific Ec2 instance/server)
+Ec2 in private subnet > internet = NAT gateway in public subnet + route pointing to IGW
+Aurora Global Database - read access in multiple regions (not write in active/active formation)
+DynamoB w/global tables - multi region active/active config, multi-master
+Dynamo Autoscaling - increae cost-efficiency w/o increasing performance
+Enable in-transit encryption - Elasticache Redis - secure data replicated btwn nodes
+X-forwarded For - Layer 7, ALB, Find IP addresses for requests
+Proxy Protocol Layer 4, NLB, Find IP addresses for requests
+FSx Windows - not S3, integrates with Windows file share
+FSx Lustre - HPC, integrates with S3, financial modeling
+Container Insights - track metrics for Container Instances
+Lambda@Edge - reduce costs, compute closer to client requests
+Gateway VPC endpoints connect Ec2 to S3 or DynamoDB w/o internet
+Security Group is evaluated before NACL
+Ec2 Resource Tags - VPC Endpoint, Flow Log
+Ec2 T family - Burstable
+Cross VPC load balancing can be configured w/NLB and ALB when using IP addresses as targets
+S3 Select: query data in place w/SQL
+Secure Traffic for EFS: EFS security groups for network traffic, POSIX permissions for file level permissions
+ALB - HTTP/HTTPS only
+NLB - TCP/SSL
+Capture details about HTTTP traffic processed by ALB : enable access logs and store logs on S3
+Multi-site: disaster recovery option, active-active minimal downtime and dataloss
+EBS - there is no direct way to change the encryption state of a volume
+When restoring to a saved DB state, default DB security group will be user automatically and will always be a new DB instance w/new DNS endpoint
+Restores up to last 5 minutes
+In default VPC: instances assigned a private and public DNS hostname
+In custom VPC: instances assigned only private DNS hostname
+Field Level Encryption - provides encryption in transit for CloudFront, encrypted at Edge
+AWS SAM - serverless application model -extention of cloudFormation used to test, package + deploy serverless apps
+Per-method throttling limits- applies to all users using same method
+Per-client throttling limits - applies to client(s) that use your keys + usage policy
+FIFO guarantees duplicates are not introduced into the queue
+SNS - transport protocols - HTTPS and Email-JSON
+ALB can authenticate users from OIDC (OpenID Connect) compliant ID providers (google, facebook)
+  - authentication action on a listener rule that configures Cognito user pool w/ social IdP
+API Gateway - cache enabled for a stage (not a method)
+RDS Multi-AZ - Synchronous Replication
+MySQL authentication -0 AWS Authentication Plugin w/IAM
+Data Events, Management Events: Types of Events that can be logged by CLOUDTRAIL
+MySQL RDS Scaling: Vertical (larger instance) Horizontal reads (read replicas)
+CHange Set - preview cloudformation responses to new template
+CloudHSM used for Key mgmt, and storage but not distribution
+CloudFront RTMP (real time messaging protocol) files must be on S3, not Ec2
+SDLC - software development lifecycle policy
+Subnet ID, Security Group ID: VPC specific info needed for Lambda to access Elaticache cluster in same AWS accts VPC
+Elasticache w Redis: can enable encryption in transit
+Redis AUTH command is used when passing credentials to the database
+Best Practices Used for DynamoDB::::: Compress larger attribute values, store objects larger than 400kb in S3 and use pointers, store frequently and infrequently accessed data
+in separate tables, keep item size small, if serial data based on time/date, used separate tables for days, weeks, months...
+Alias records used to map resource record sets in your hosted zone to: ELB, API custom regional APIs + edge optimized APIs, CloudFront Distros, Elatic Beakstalk Environments
+S3 Buckets, website endpoints, VPC interface endpoints, and other records
+Single Sign on for mobile apps: Cognito
+Single Sign on btwn prem + mgmt console - STS + SAML (Security Assertion Markup Language)
+AWS Batch - multi-node parallel job, managed service, HPC
+CloudFormation Cluster Group - customer managed
+Subnets are always associated with a route table when created, auto-assigned to main route table which has no internet access
+Install MySQL on new Ec2 + enable replication in another AZ
+General Purpose SSD gives 3 IOPS/GB up to 16,000 IOPS, Vol Size 1GB - 16TB
+Bucket Policy Best Practice: use DNS/URLS instead of IP addresses (which can often change)
+IAM Query API - make direct calls to IAM service
+Lambda Used parameter store to keep credentials out of the code
+IPSec VPN + same BGP - add resiliency to Direct Connect
+Connection Draining Timer - ELB allows connections to finish before termination instance
+EMR is good for analyzing log files
+Elastic Transcoder - convert media file formats
+Configure security group to only allow traffic from ELB to keep web servers private
+DynamoDB Streams - captures time ordered list of item level modifications
+Standard A record: domain > IP. cannot obtain IP of ELB so we must use Alias record
+For Ec2 access to s3, use IAM policy not bucket policy
+ObsWorks Stacks: ot managed, Chef solo
+OpsWorks for Chef Automate: fully managed
+Cognito Identity Pools - provide temporary credentials for guest users
+Internet Gateay is horizontally scaled, highly available, redundant component
+NAT Gateway - bandwidth limit of 45 mbps
+General Purpose SSD more expensive than THroughput Optimized HDD
+Insufficient Data - Ec2 status check not finished
+VPG w/ Direct Connect will enable enxryption
+Presigned URL - allows direct uploads to S3 pypassing web server layer
+TTL - cache responses reduce load on back-end services
+API calls require access keys
+Auto complete is a good use case for redis elasticache
+Create a VPC security group for the ELB and use Lambda to update CloudFront internal service IP when they change
+Use a gateway endpoint with public services like S3 and DynamoDB
+Use interface endpoint for private services
+NLV + PrivateLink -  grant access to private VPC w/application inside
+Minimum of 30 days before transitioning to Standard IA from S3 Standard
+AWS Global Accelerator - uses AWS internal network to route TCP/UDP to a healthy endpoint in closest region to the user. seamless failover which returns target endpoint IP
+Storage Gateway File Gateway provide apps a file interface like on-prem NAS
+FSx Lustre - HPC
+Instance Store - max performance
+AWS Storage Gateway File Gateway - NFS, SMB protocols, Stand alone hardware for backing up on prem data center/NFS
+SQS batching enhances efficiency but not prioritization
+Price class - CloudFront allows you to choose where to cache your content
