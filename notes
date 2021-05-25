@@ -111,3 +111,23 @@ Instance Store - max performance
 AWS Storage Gateway File Gateway - NFS, SMB protocols, Stand alone hardware for backing up on prem data center/NFS
 SQS batching enhances efficiency but not prioritization
 Price class - CloudFront allows you to choose where to cache your content
+Interface Endpoint: Elastic Network Interface w/private IP, DNS entries direct traffic, API gateway
+CloudFront can geoallow or georestric users
+You don't login with an OAI but an OAI is a special user
+SNS - Lambda is a supported subscripber but not a transport protocol
+SQS Visibility Timeout - add resiliency in case a processor fails to complete a job
+SWF simple workflow service - human enabled job, order fulfillment
+Aurora Multimaster - scale out write performance, active active, multi-AZ
+ElastiCache Redis - replication + encryption, HIPAA, cluster support, complex data types, scales by adding shards, high availaability
+ElastiCache - web session store
+Memcached - simple, elastic, non-persistent, RDS, DynamoDB, not multi AZ, multi-thread
+RDS - OTLP (online transactional processing) structured, managed service, Aurora, MySQL, MariaDB, Microsoft SQL, PostgreSQL, Oracle
+Security Patching, Auto backup, easy scaling, read replicas scale read (not write)
+RDS Multi-AZ - Synchronous Replication
+RDS Read Replica - Asynchronous Replication
+Redshift - analytical OLAP (online analytical processing), not multi-AZ, SQL, BI tools, snapshots stored on S3 which is multi AZ
+Redshift Spectrum - query data in place on S3
+Redshift - columnar based storage method, fewer IOs required compared to relational DB
+Aurora Replicas - same region, auto failover
+MySQL Replicas - cross region / manual failover
+Relational DB - ACID compliant (atomicity, consistency, isolation, durability), supports complex queries and joins
